@@ -1,3 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+  font-family: sans-serif;
+}
+
+.app {
+  max-width: 400px;
+  background-color: rgb(183, 219, 243);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.input {
+  display: flex;
+  gap: 1rem;
+}
+
+.inputfield {
+  border: none;
+  border-radius: 6px;
+  width: 15rem;
+  height: 32px;
+}
+
+.inputfield:focus {
+  outline: none;
+}
+
+button {
+  border-radius: 3px;
+  border: none;
+  background-color: rgb(90, 164, 207);
+  width: 85px;
+  height: 35px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.todo-text {
+  display: flex;
+  gap: 1rem;
+}
+
 .done {
   text-decoration: line-through;
   color: grey;

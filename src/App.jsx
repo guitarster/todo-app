@@ -7,6 +7,7 @@ function App() {
 
   function addToDo() {
     setTodos([...todos, { id: Date.now(), text: newTodo, done: false }]);
+    setTodo("");
   }
 
   function toggleTodo(id) {
@@ -14,6 +15,8 @@ function App() {
       todos.map((todo) => {
         if (todo.id === id) {
           return { ...todo, done: !todo.done };
+        } else {
+          return todo;
         }
       })
     );
@@ -24,24 +27,31 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Meine ToDos</h1>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setTodo(e.target.value)}
-        placeholder="ToDo eingeben..."
-      ></input>
-      <button onClick={() => addToDo()}>Hinzufügen</button>
+    <div className="app">
+      <h1>Meine Todos</h1>
+      <div className="input">
+        <input
+          className="inputfield"
+          type="text"
+          value={newTodo}
+          onChange={(e) => setTodo(e.target.value)}
+          placeholder="ToDo eingeben..."
+        ></input>
+        <button onClick={() => addToDo()}>Hinzufügen</button>
+      </div>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id} className={todo.done === true ? "done" : ""}>
-            <input
-              onChange={() => toggleTodo(todo.id)}
-              checked={todo.done}
-              type="checkbox"
-            ></input>
-            {todo.text}
+          <li key={todo.id}>
+            <div className="todo-text">
+              <input
+                onChange={() => toggleTodo(todo.id)}
+                checked={todo.done}
+                type="checkbox"
+              ></input>
+              <span className={todo.done === true ? "done" : ""}>
+                {todo.text}
+              </span>
+            </div>
             <button onClick={() => deleteTodo(todo.id)}>Löschen</button>
           </li>
         ))}
