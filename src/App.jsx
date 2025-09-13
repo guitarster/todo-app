@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./App.css";
+import TodoList from "./TodoList";
+import NoteInput from "./TodoInput";
 
 function App() {
   const [newTodo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  function addToDo() {
+  function addTodo() {
     setTodos([...todos, { id: Date.now(), text: newTodo, done: false }]);
     setTodo("");
   }
@@ -29,33 +31,8 @@ function App() {
   return (
     <div className="app">
       <h1>Meine Todos</h1>
-      <div className="input">
-        <input
-          className="inputfield"
-          type="text"
-          value={newTodo}
-          onChange={(e) => setTodo(e.target.value)}
-          placeholder="ToDo eingeben..."
-        ></input>
-        <button onClick={() => addToDo()}>Hinzufügen</button>
-      </div>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <div className="todo-text">
-              <input
-                onChange={() => toggleTodo(todo.id)}
-                checked={todo.done}
-                type="checkbox"
-              ></input>
-              <span className={todo.done === true ? "done" : ""}>
-                {todo.text}
-              </span>
-            </div>
-            <button onClick={() => deleteTodo(todo.id)}>Löschen</button>
-          </li>
-        ))}
-      </ul>
+      <NoteInput newTodo={newTodo} setTodo={setTodo} addToDo={addTodo} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }
