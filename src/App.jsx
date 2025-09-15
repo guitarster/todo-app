@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import TodoList from "./TodoList";
-import NoteInput from "./TodoInput";
+import TodoInput from "./TodoInput";
 
 function App() {
   const [newTodo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
   function addTodo() {
+    if (newTodo === "") {
+      return;
+    }
     setTodos([...todos, { id: Date.now(), text: newTodo, done: false }]);
     setTodo("");
   }
@@ -15,11 +18,7 @@ function App() {
   function toggleTodo(id) {
     setTodos(
       todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, done: !todo.done };
-        } else {
-          return todo;
-        }
+        todo.id === id ? { ...todo, done: !todo.done } : todo;
       })
     );
   }
@@ -31,7 +30,7 @@ function App() {
   return (
     <div className="app">
       <h1>Meine Todos</h1>
-      <NoteInput newTodo={newTodo} setTodo={setTodo} addToDo={addTodo} />
+      <TodoInput newTodo={newTodo} setTodo={setTodo} addToDo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </div>
   );

@@ -1,4 +1,4 @@
-function NoteInput({ newTodo, setTodo, addToDo }) {
+function TodoInput({ newTodo, setTodo, addToDo }) {
   return (
     <div className="input">
       <input
@@ -13,4 +13,4 @@ function NoteInput({ newTodo, setTodo, addToDo }) {
   );
 }
 
-export default NoteInput;
+export default TodoInput;
